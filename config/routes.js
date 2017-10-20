@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-// const statics = require('../controllers/posts');
+const staticsController = require('../controllers/statics');
+const sessionsController = require('../controllers/sessions');
+const registrationsController = require('../controllers/registrations');
+
 
 // Home Route
-router.get('/', (req, res) => {
-  res.render('statics/home');
-});
+router.route('/')
+  .get(staticsController.home);
 
 // About Route
 router.get('/about', (req, res) => {
@@ -37,6 +39,16 @@ router.get('/posts/:id/edit', (req, res) => {
 router.delete('/posts/:id', (req, res) => {
   res.send('Delete!');
 });
+
+// Login Routes
+router.route('/login')
+  .get(sessionsController.new)
+  .post(sessionsController.create);
+
+// New User Routes
+router.route('/register')
+  .get(registrationsController.new)
+  .post(registrationsController.create);
 
 // Catch All 404 Route
 router.get('*', (req, res) => {

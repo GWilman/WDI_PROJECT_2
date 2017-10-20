@@ -1,18 +1,20 @@
 const express        = require('express');
 const morgan         = require('morgan');
 const mongoose       = require('mongoose');
-// const bodyParser = require("body-parser");
-const port           = process.env.PORT || 3000;
+const bodyParser     = require('body-parser');
 const router         = require('./config/routes');
-const dbURI          = process.env.MONGODB_URI || 'mongodb://localhost/p-cont';
 const expressLayouts = require('express-ejs-layouts');
+// const methodOverride = require('method-override');
 
 const app = express();
+
+const { port, dbURI, secret } = require('./config/environment');
 
 // Logging middleware
 app.use(morgan('dev'));
 
 app.use(expressLayouts);
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.Promise = require('bluebird');
 mongoose.connect(dbURI, { useMongoClient: true });
