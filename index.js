@@ -6,6 +6,7 @@ const router          = require('./config/routes');
 const expressLayouts  = require('express-ejs-layouts');
 const session         = require('express-session');
 const User            = require('./models/user');
+const flash           = require('express-flash');
 // const methodOverride = require('method-override');
 
 const app = express();
@@ -31,6 +32,8 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use(flash());
+
 app.use((req, res, next) => {
   if (!req.session.userId) return next();
   User
@@ -38,6 +41,7 @@ app.use((req, res, next) => {
     .then((user) => {
       if(!user) {
         return req.session.regenerate(() => {
+          req.flash('danger', 'You must be logged in.');
           res.redirect('/');
         });
       }

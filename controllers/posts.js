@@ -14,7 +14,7 @@ function showRoute(req, res) {
 }
 
 function editRoute(req, res) {
-  res.render('/posts/:id/edit');
+  res.render('/posts/edit');
 }
 
 function updateRoute(req, res) {

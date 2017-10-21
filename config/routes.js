@@ -11,6 +11,7 @@ const notFoundController = require('../controllers/404');
 function secureRoute(req, res, next) {
   if (!req.session.userId) {
     return req.session.regenerate(() => {
+      req.flash('danger', 'You must be logged in.');
       res.redirect('/login');
     });
   }
@@ -37,7 +38,7 @@ router.route('/posts/:id')
   .delete(secureRoute, postsController.delete);
 
 // Edit Route
-router.route('/hotels/:id/edit')
+router.route('/posts/:id/edit')
   .get(secureRoute, postsController.edit);
 
 // Login Routes
