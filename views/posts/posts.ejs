@@ -1,6 +1,7 @@
 <h1>The Wall</h1>
 <ul>
   <li><a href="/posts/new">Post a tune!</a></li>
+  <% posts = posts.reverse(); %>
   <% posts.forEach(post => { %>
     <li>
       <% const videoID = youtubeParser(post.videoURL); %>

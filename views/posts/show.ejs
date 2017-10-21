@@ -2,7 +2,7 @@
 <ul>
   <% const videoID = youtubeParser(post.videoURL); %>
   <p><%= post.caption %></p>
-  <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="10" allowfullscreen></iframe>
+  <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
   <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
   <p><a href="/posts/<%= post.id %>/edit" class="button">Edit</a></p>
   <form method="POST" action="/posts/<%= post.id %>">
