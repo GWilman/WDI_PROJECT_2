@@ -1,8 +1,12 @@
 <h1>Edit post</h1>
-<ul>
-    <li>
-      <% const videoID = youtubeParser(post.videoURL); %>
-      <p><%= post.caption %></p>
-      <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
-    </li>
-</ul>
+<form method="POST" action="/posts/<%= post.id %>">
+  <input type="hidden" name="_method" value="PUT">
+  <div>
+    <label for="caption">Caption</label>
+    <input type="text" name="caption" id="caption" value="<%= post.caption %>" required>
+  </div>
+  <div>
+    <label for="videoURL">Video Link</label>
+    <input type="text" name="videoURL" id="videoURL" value="<%= post.videoURL %>" required>
+  </div>
+  <button class="button">Update</button>

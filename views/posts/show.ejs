@@ -1,4 +1,7 @@
 <h1>View singular post (edit/delete options)</h1>
 <ul>
-
+  <% const videoID = youtubeParser(post.videoURL); %>
+  <p><%= post.caption %></p>
+  <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
+  <p><a href="/posts/<%= post.id %>/edit">Edit</a></p>
 </ul>

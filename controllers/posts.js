@@ -10,6 +10,7 @@ function youtubeParser(url) {
 function indexRoute(req, res) {
   Post
     .find()
+    .populate('createdBy')
     .exec()
     .then(posts => {
       console.log(posts);
@@ -25,6 +26,7 @@ function newRoute(req, res) {
 }
 
 function createRoute(req, res) {
+  req.body.createdBy = req.user;
   Post
     .create(req.body)
     .then(() => {
@@ -41,8 +43,16 @@ function createRoute(req, res) {
 //   });
 // }
 
-function showRoute(req, res) {
-  res.render('posts/show');
+function showRoute(req, res, next) {
+  Post
+    .findById(req.params.id)
+    .populate('createdBy')
+    .exec()
+    .then((post) => {
+      if(!post) return res.notFound();
+      return res.render('posts/show', { post, youtubeParser });
+    })
+    .catch(next);
 }
 
 function editRoute(req, res, next) {
@@ -50,14 +60,30 @@ function editRoute(req, res, next) {
     .findById(req.params.id)
     .exec()
     .then((post) => {
-      if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
-      return res.render('posts/edit', { post });
+      // if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
+      return res.render('posts/edit', { post, youtubeParser });
     })
     .catch(next);
 }
 
-function updateRoute(req, res) {
-  res.send('Update!');
+function updateRoute(req, res, next) {
+  Post
+    .findById(req.params.id)
+    .exec()
+    .then((post) => {
+      if(!post) return res.notFound();
+      // if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
+      for(const field in req.body) {
+        post[field] = req.body[field];
+      }
+
+      return post.save();
+    })
+    .then(() => res.redirect(`/posts/${req.params.id}`))
+    .catch((err) => {
+      if(err.name === 'ValidationError') return res.badRequest(`/posts/${req.params.id}/edit`, err.toString());
+      next(err);
+    });
 }
 
 function deleteRoute(req, res) {
@@ -72,6 +98,4 @@ module.exports = {
   edit: editRoute,
   update: updateRoute,
   delete: deleteRoute
-  // createComment: createCommentRoute,
-  // deleteComment: deleteCommentRoute
 };

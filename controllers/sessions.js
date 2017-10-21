@@ -13,6 +13,7 @@ function sessionsCreate(req, res) {
         return res.redirect('/login');
       }
       req.session.userId = user.id;
+      req.session.isLoggedIn = true;
       req.flash('info', `Welcome back, ${user.username}!`);
       res.redirect('/');
     });

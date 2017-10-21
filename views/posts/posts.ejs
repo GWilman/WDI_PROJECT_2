@@ -6,7 +6,7 @@
       <% const videoID = youtubeParser(post.videoURL); %>
       <p><%= post.caption %></p>
       <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
-      <p><a href="/posts/<%= post.id %>">View details</p>
+      <p><a href="/posts/<%= post.id %>">View details</a></p>
       <% if (post.createdBy) { %>
         <p>Created by <%= post.createdBy.username %> </p>
       <% } %>

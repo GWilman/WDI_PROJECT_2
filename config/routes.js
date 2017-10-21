@@ -29,7 +29,7 @@ router.route('/posts')
 // Show/Create/Delete Route
 router.route('/posts/:id')
   .get(postsController.show)
-  .post(secureRoute, postsController.update)
+  .put(secureRoute, postsController.update)
   .delete(secureRoute, postsController.delete);
 
 // Edit Route
