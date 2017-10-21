@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
   imageURL: String
 });
 
+userSchema.methods.validatePassword = function validatePassword(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
 // YOU HAVE TO COMMENT OUT THE PASSWORD CONFIRMATION BEFORE RUNNING NODE DB/SEEDS
 userSchema.pre('save', function hashPassword(next) {
   if(this.isModified('password')) {

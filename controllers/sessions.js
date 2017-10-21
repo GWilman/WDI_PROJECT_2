@@ -4,22 +4,16 @@ function sessionsNew(req, res) {
   res.render('sessions/new');
 }
 
-function sessionsCreate(req, res, next) {
+function sessionsCreate(req, res) {
   User
     .findOne({ email: req.body.email })
     .then((user) => {
       if(!user || !user.validatePassword(req.body.password)) {
-        req.flash('danger', 'Unknown email/password combination');
-        return res.redirect('/login');
+        res.status(401).render('sessions/new', { message: 'Unrecognised credentials' });
       }
-
       req.session.userId = user.id;
-      req.session.isAuthenticated = true;
-
-      req.flash('success', `Welcome back, ${user.username}!`);
       res.redirect('/');
-    })
-    .catch(next);
+    });
 }
 
 function sessionsDelete(req, res) {
