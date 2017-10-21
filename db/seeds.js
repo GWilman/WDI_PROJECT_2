@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-// const { dbURI } = require('../config/environment');
-const dbURI = 'mongodb://localhost/p-cont';
+const { dbURI } = require('../config/environment');
 
 mongoose.Promise = require('bluebird');
 mongoose.connect(dbURI, { useMongoClient: true });

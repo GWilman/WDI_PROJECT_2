@@ -1,1 +1,15 @@
 <h1>The Wall</h1>
+<ul>
+  <li><a href="/posts/new">Post a tune!</a></li>
+  <% posts.forEach(post => { %>
+    <li>
+      <% const videoID = youtubeParser(post.videoURL); %>
+      <p><%= post.caption %></p>
+      <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
+      <p><a href="/posts/<%= post.id %>">View details</p>
+      <% if (post.createdBy) { %>
+        <p>Created by <%= post.createdBy.username %> </p>
+      <% } %>
+    </li>
+  <% }); %>
+</ul>

@@ -7,16 +7,7 @@ const registrationsController = require('../controllers/registrations');
 const postsController = require('../controllers/posts');
 const notFoundController = require('../controllers/404');
 
-
-function secureRoute(req, res, next) {
-  if (!req.session.userId) {
-    return req.session.regenerate(() => {
-      req.flash('danger', 'You must be logged in.');
-      res.redirect('/login');
-    });
-  }
-  return next();
-}
+const secureRoute = require('../lib/secureRoute');
 
 // Home Route
 router.route('/')
@@ -26,10 +17,14 @@ router.route('/')
 router.route('/about')
   .get(staticsController.about);
 
+// New Post Route
+router.route('/posts/new')
+  .get(secureRoute, postsController.new);
+
 // Index/Create Route
 router.route('/posts')
   .get(postsController.index)
-  .post(secureRoute, postsController.create);
+  .post(postsController.create);
 
 // Show/Create/Delete Route
 router.route('/posts/:id')

@@ -3,11 +3,13 @@ const morgan          = require('morgan');
 const mongoose        = require('mongoose');
 const bodyParser      = require('body-parser');
 const router          = require('./config/routes');
+const authentication  = require('./lib/authentication');
+const errorHandler    = require('./lib/errorHandler');
+const customResponses = require('./lib/customResponses');
 const expressLayouts  = require('express-ejs-layouts');
 const session         = require('express-session');
-const User            = require('./models/user');
 const flash           = require('express-flash');
-// const methodOverride = require('method-override');
+const methodOverride  = require('method-override');
 
 const app = express();
 
@@ -34,24 +36,19 @@ app.use(session({
 
 app.use(flash());
 
-app.use((req, res, next) => {
-  if (!req.session.userId) return next();
-  User
-    .findById(req.session.userId)
-    .then((user) => {
-      if(!user) {
-        return req.session.regenerate(() => {
-          req.flash('danger', 'You must be logged in.');
-          res.redirect('/');
-        });
-      }
-      req.session.userId = user._id;
-      res.locals.user = user;
-      res.locals.isLoggedIn = true;
-      next();
-    });
-});
+app.use(customResponses);
+app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(methodOverride(function (req) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    const method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
+
+app.use(authentication);
+app.use(errorHandler);
 app.use(router);
 
 // Start it up!

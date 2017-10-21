@@ -1,1 +1,8 @@
 <h1>Edit post</h1>
+<ul>
+    <li>
+      <% const videoID = youtubeParser(post.videoURL); %>
+      <p><%= post.caption %></p>
+      <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
+    </li>
+</ul>
