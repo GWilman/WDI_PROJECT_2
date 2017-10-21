@@ -4,46 +4,50 @@ const router = express.Router();
 const staticsController = require('../controllers/statics');
 const sessionsController = require('../controllers/sessions');
 const registrationsController = require('../controllers/registrations');
+const postsController = require('../controllers/posts');
+const notFoundController = require('../controllers/404');
 
+
+function secureRoute(req, res, next) {
+  if (!req.session.userId) {
+    return req.session.regenerate(() => {
+      res.redirect('/login');
+    });
+  }
+  return next();
+}
 
 // Home Route
 router.route('/')
   .get(staticsController.home);
 
 // About Route
-router.get('/about', (req, res) => {
-  res.render('statics/about');
-});
+router.route('/about')
+  .get(staticsController.about);
 
-// Index Route
-router.get('/posts', (req, res) => {
-  res.render('posts/posts');
-});
+// Index/Create Route
+router.route('/posts')
+  .get(postsController.index)
+  .post(secureRoute, postsController.create);
 
-// Update Route
-router.put('/posts', (req, res) => {
-  res.send('Update!');
-});
-
-// Show Route
-router.get('/posts/:id', (req, res) => {
-  res.render('posts/show');
-});
+// Show/Create/Delete Route
+router.route('/posts/:id')
+  .get(postsController.show)
+  .post(secureRoute, postsController.update)
+  .delete(secureRoute, postsController.delete);
 
 // Edit Route
-router.get('/posts/:id/edit', (req, res) => {
-  res.render('posts/edit');
-});
-
-// Delete Route
-router.delete('/posts/:id', (req, res) => {
-  res.send('Delete!');
-});
+router.route('/hotels/:id/edit')
+  .get(secureRoute, postsController.edit);
 
 // Login Routes
 router.route('/login')
   .get(sessionsController.new)
   .post(sessionsController.create);
+
+// Logout Routes
+router.route('/logout')
+  .get(sessionsController.delete);
 
 // New User Routes
 router.route('/register')
@@ -51,8 +55,7 @@ router.route('/register')
   .post(registrationsController.create);
 
 // Catch All 404 Route
-router.get('*', (req, res) => {
-  res.render('statics/404');
-});
+router.get('*')
+  .get(notFoundController.notFound);
 
 module.exports = router;
