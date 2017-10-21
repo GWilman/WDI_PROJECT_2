@@ -25,23 +25,16 @@ function newRoute(req, res) {
   res.render('posts/new');
 }
 
-function createRoute(req, res) {
+function createRoute(req, res, next) {
   req.body.createdBy = req.user;
   Post
     .create(req.body)
-    .then(() => {
-      res.redirect('/posts');
+    .then(() => res.redirect('/posts'))
+    .catch((err) => {
+      if(err.name === 'ValidationError') return res.badRequest(`/posts/${req.params.id}/edit`, err.toString());
+      next(err);
     });
 }
-// req.body.createdBy = req.user;
-// Post
-//   .create(req.body)
-//   .then(() => res.redirect('/posts'))
-//   .catch((err) => {
-//     if(err.name === 'ValidationError') return res.badRequest('/posts/new', err.toString());
-//     next(err);
-//   });
-// }
 
 function showRoute(req, res, next) {
   Post
@@ -60,7 +53,7 @@ function editRoute(req, res, next) {
     .findById(req.params.id)
     .exec()
     .then((post) => {
-      // if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
+      if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
       return res.render('posts/edit', { post, youtubeParser });
     })
     .catch(next);
@@ -72,7 +65,7 @@ function updateRoute(req, res, next) {
     .exec()
     .then((post) => {
       if(!post) return res.notFound();
-      // if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
+      if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
       for(const field in req.body) {
         post[field] = req.body[field];
       }
@@ -86,8 +79,17 @@ function updateRoute(req, res, next) {
     });
 }
 
-function deleteRoute(req, res) {
-  res.send('Delete!');
+function deleteRoute(req, res, next) {
+  Post
+    .findById(req.params.id)
+    .exec()
+    .then((post) => {
+      if(!post) return res.notFound();
+      if(!post.belongsTo(req.user)) return res.unauthorized(`/hotels/${post.id}`, 'You do not have permission to edit that resource');
+      return post.remove();
+    })
+    .then(() => res.redirect('/posts'))
+    .catch(next);
 }
 
 module.exports = {

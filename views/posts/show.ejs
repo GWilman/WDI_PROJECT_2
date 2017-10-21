@@ -2,6 +2,12 @@
 <ul>
   <% const videoID = youtubeParser(post.videoURL); %>
   <p><%= post.caption %></p>
-  <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
-  <p><a href="/posts/<%= post.id %>/edit">Edit</a></p>
+  <iframe width="400" height="260" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="10" allowfullscreen></iframe>
+  <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
+  <p><a href="/posts/<%= post.id %>/edit" class="button">Edit</a></p>
+  <form method="POST" action="/posts/<%= post.id %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="button alert">Delete</button>
+  </form>
+<% } %>
 </ul>
