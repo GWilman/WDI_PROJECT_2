@@ -23,7 +23,10 @@ User
       .create([{
         caption: 'What a banger.',
         videoURL: 'https://www.youtube.com/watch?v=GXTV4pYVk20',
-        createdBy: users[0]
+        createdBy: users[0],
+        comments: [{
+          content: 'my first comment'
+        }]
       }]);
   })
   .catch((err) => console.log(err))

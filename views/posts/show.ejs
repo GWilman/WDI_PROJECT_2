@@ -10,4 +10,26 @@
     <button class="button alert">Delete</button>
   </form>
 <% } %>
+<% if(locals.isAuthenticated) { %>
+<section>
+  <h4>Leave a comment</h4>
+  <form method="POST" action="/posts/<%= post.id %>/comments">
+    <textarea name="content" id="content" placeholder="Comment"></textarea>
+    <button class="button">Leave a comment</button>
+  </form>
+</section>
+<% } %>
+<section>
+<h4>Comments</h4>
+<% post.comments.forEach((comment) => { %>
+  <p><small><%= comment.createdBy.username %> said:</small>
+  <p><%= comment.content %></p>
+  <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>
+    <form method="POST" action="/posts/<%= post.id %>/comments/<%= comment.id %>">
+      <input type="hidden" name="_method" value="DELETE">
+      <button>Delete Comment</button>
+    </form>
+  <% } %>
+<% }) %>
+</section>
 </ul>

@@ -39,7 +39,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Post
     .findById(req.params.id)
-    .populate('createdBy')
+    .populate('createdBy comments.createdBy')
     .exec()
     .then((post) => {
       if(!post) return res.notFound();
@@ -85,10 +85,41 @@ function deleteRoute(req, res, next) {
     .exec()
     .then((post) => {
       if(!post) return res.notFound();
-      if(!post.belongsTo(req.user)) return res.unauthorized(`/hotels/${post.id}`, 'You do not have permission to edit that resource');
+      if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
       return post.remove();
     })
     .then(() => res.redirect('/posts'))
+    .catch(next);
+}
+
+function createCommentRoute(req, res, next) {
+  req.body.createdBy = req.user;
+  Post
+    .findById(req.params.id)
+    .exec()
+    .then((post) => {
+      if(!post) return res.notFound();
+      post.comments.push(req.body);
+      console.log(post.comments);
+      return post.save();
+    })
+    .then((post) => res.redirect(`/posts/${post.id}`))
+    .catch(next);
+}
+
+function deleteCommentRoute(req, res, next) {
+  Post
+    .findById(req.params.id)
+    .exec()
+    .then((post) => {
+      if(!post) return res.notFound();
+      if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to delete that comment');
+      // get the embedded record by it's id
+      const comment = post.comments.id(req.params.commentId);
+      comment.remove();
+      return post.save();
+    })
+    .then((post) => res.redirect(`/posts/${post.id}`))
     .catch(next);
 }
 
@@ -99,5 +130,7 @@ module.exports = {
   show: showRoute,
   edit: editRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  createComment: createCommentRoute,
+  deleteComment: deleteCommentRoute
 };

@@ -11,6 +11,15 @@
       <% if (post.createdBy) { %>
         <p>Created by <%= post.createdBy.username %> </p>
       <% } %>
+      <% if(locals.isLoggedIn) { %>
+      <section>
+        <h4>Leave a comment</h4>
+        <form method="POST" action="/posts/<%= post.id %>/comments">
+          <textarea name="content" id="content" placeholder="Comment"></textarea>
+          <button class="button">Leave a comment</button>
+        </form>
+      </section>
+      <% } %>
     </li>
   <% }); %>
 </ul>

@@ -50,6 +50,14 @@ router.route('/register')
   .get(registrationsController.new)
   .post(registrationsController.create);
 
+// Add Comment Route
+router.route('/posts/:id/comments')
+  .post(secureRoute, postsController.createComment);
+
+// Delete Comment Route
+router.route('/posts/:id/comments/:commentId')
+  .delete(secureRoute, postsController.deleteComment);
+
 // Catch All 404 Route
 router.get('*')
   .get(notFoundController.notFound);
