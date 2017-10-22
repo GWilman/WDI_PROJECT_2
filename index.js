@@ -15,7 +15,6 @@ const app = express();
 
 const { port, dbURI, secret } = require('./config/environment');
 
-// Logging middleware
 app.use(morgan('dev'));
 
 app.use(expressLayouts);
@@ -24,9 +23,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.Promise = require('bluebird');
 mongoose.connect(dbURI, { useMongoClient: true });
 
-// Set the view directory to /views
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'ejs');
+
+app.use(express.static(`${__dirname}/public`));
 
 app.use(session({
   secret: secret,

@@ -17,10 +17,6 @@ router.route('/')
 router.route('/about')
   .get(staticsController.about);
 
-// New Post Route
-router.route('/posts/new')
-  .get(secureRoute, postsController.new);
-
 // Index/Create Route
 router.route('/posts')
   .get(postsController.index)

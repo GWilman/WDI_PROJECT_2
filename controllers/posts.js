@@ -21,10 +21,6 @@ function indexRoute(req, res) {
     });
 }
 
-function newRoute(req, res) {
-  res.render('posts/new');
-}
-
 function createRoute(req, res, next) {
   req.body.createdBy = req.user;
   Post
@@ -125,7 +121,6 @@ function deleteCommentRoute(req, res, next) {
 
 module.exports = {
   index: indexRoute,
-  new: newRoute,
   create: createRoute,
   show: showRoute,
   edit: editRoute,

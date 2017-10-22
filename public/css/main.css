@@ -1,0 +1,47 @@
+body {
+  background: #0b244c;
+}
+
+.profile-pic {
+  width: 100%;
+  border-radius: 100px;
+  margin: 0 auto;
+}
+
+.profile-info {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.new-post-info {
+  width: 80%;
+}
+
+.poster-info {
+  margin-top: 14px;
+}
+
+.post-container {
+  background: white;
+  border-radius: 0px 24px 24px 24px;
+  margin: 14px 0;
+}
+
+.post-message {
+  margin-top: 10px;
+}
+
+.post-song {
+  float: right;
+}
+
+.wall-post-vid {
+  height: 260px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+  .wall-post-vid {height: 180px;}
+}
+
+/*width="400" height="260"*/
