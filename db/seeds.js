@@ -34,10 +34,6 @@ User
     console.log(`${users.length} users created`);
     return Post
       .create([{
-        caption: 'Big tune.',
-        videoURL: 'https://www.youtube.com/watch?v=GXTV4pYVk20',
-        createdBy: users[0]
-      }, {
         caption: 'This album is great.',
         videoURL: 'https://www.youtube.com/watch?v=J1kzMFnFSh0',
         createdBy: users[1],
@@ -46,20 +42,24 @@ User
           createdBy: users[2]
         }]
       }, {
+        caption: 'Big tune.',
+        videoURL: 'https://www.youtube.com/watch?v=GXTV4pYVk20',
+        createdBy: users[0]
+      }, {
+        caption: 'Four tet magic.',
+        videoURL: 'https://www.youtube.com/watch?v=E6wllpw5udk&feature=youtu.be',
+        createdBy: users[2],
+        comments: [{
+          content: 'Very nice',
+          createdBy: users[1]
+        }]
+      }, {
         caption: 'Old but still great.',
         videoURL: 'https://www.youtube.com/watch?v=J1kzMFnFSh0',
         createdBy: users[1],
         comments: [{
           content: 'Belter',
           createdBy: users[0]
-        }]
-      }, {
-        caption: 'Four tet magic',
-        videoURL: 'https://www.youtube.com/watch?v=E6wllpw5udk&feature=youtu.be',
-        createdBy: users[2],
-        comments: [{
-          content: 'Very nice',
-          createdBy: users[1]
         }]
       }]);
   })

@@ -1,22 +1,31 @@
 <div class="col-12">
   <div class="row">
-    <h1>The Wall</h1>
+    <div class="col-2">
+    </div>
+    <div class="col-8 headline">
+      <h1>The Wall</h1>
+    </div>
+    <div class="col-2">
+    </div>
   </div>
 </div>
 <div class="col-12">
   <div class="row">
     <div class="col-2">
-      <img class="profile-pic" src="<%=  %>" alt="profile-image">
+      <%# Maybe current users image here%>
     </div>
-    <div class="col-8">
+    <div class="col-8 new-post-container">
       <form method="POST" action="/posts">
+        <div>
+          <p class="post-prompt"><small>Post a new track:</small></p>
+        </div>
         <div>
           <label for="caption"></label>
           <input class="new-post-info" type="text" name="caption" id="caption" placeholder="Write a message..." required>
         </div>
         <div>
           <label for="videoURL"></label>
-          <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Insert YouTube link here..."required><button class="button post-song">Post</button>
+          <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Paste YouTube link here..."required><button class="btn btn-primary post-song">Post</button>
         </div>
       </form>
     </div>

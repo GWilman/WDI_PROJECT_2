@@ -15,7 +15,7 @@ function sessionsCreate(req, res) {
       req.session.userId = user.id;
       req.session.isLoggedIn = true;
       req.flash('info', `Welcome back, ${user.username}!`);
-      res.redirect('/');
+      res.redirect('/posts');
     });
 }
 
