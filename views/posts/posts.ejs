@@ -47,20 +47,29 @@
         <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
         <div class="action-container">
           <p>
+            <a href="#">Add to Playlist</a>
             <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
+              <span class="float-right">
               <a href="/posts/<%= post.id %>/edit">Edit/Delete</a>
-              <% } else { %>
-                &nbsp;
-              <% } %>
-              <span class="float-right"><a href="#">Add to Playlist</a>
               </span>
+              <% } %>
             </p>
         </div>
+        <h4>Comments</h4>
+        <% post.comments.forEach((comment) => { %>
+          <p class="comment"><strong><%= comment.createdBy.username %></strong> said: <%= comment.content %></p>
+          <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>
+            <form class="delete-comment" method="POST" action="/posts/<%= post.id %>/comments/<%= comment.id %>">
+              <input type="hidden" name="_method" value="DELETE">
+              <span class="float-right"><button class="delete-comment-btn">Delete</button></span>
+            </form>
+          <% } %>
+        <% }) %>
+        </section>
         <% if(locals.isLoggedIn) { %>
-        <section class="clearfix">
-          <h4>Leave a comment</h4>
+        <section>
           <form method="POST" action="/posts/<%= post.id %>/comments">
-            <textarea class="comment-box" name="content" id="content" placeholder="Comment"></textarea>
+            <textarea class="comment-box" name="content" id="content" placeholder="Leave a comment"></textarea>
             <button class="btn btn-primary post-song post-comment">Post Comment</button>
           </form>
         </section>

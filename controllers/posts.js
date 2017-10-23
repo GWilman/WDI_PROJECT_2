@@ -10,7 +10,7 @@ function youtubeParser(url) {
 function indexRoute(req, res) {
   Post
     .find()
-    .populate('createdBy')
+    .populate('createdBy comments.createdBy')
     .exec()
     .then(posts => {
       // console.log(posts);
@@ -104,7 +104,7 @@ function createCommentRoute(req, res, next) {
       console.log(post.comments);
       return post.save();
     })
-    .then((post) => res.redirect(`/posts/${post.id}`))
+    .then(() => res.redirect('/posts'))
     .catch(next);
 }
 
@@ -113,14 +113,14 @@ function deleteCommentRoute(req, res, next) {
     .findById(req.params.id)
     .exec()
     .then((post) => {
-      if(!post) return res.notFound();
-      if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to delete that comment');
       // get the embedded record by it's id
       const comment = post.comments.id(req.params.commentId);
+      if(!post) return res.notFound();
+      if(!comment.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to delete that comment');
       comment.remove();
       return post.save();
     })
-    .then((post) => res.redirect(`/posts/${post.id}`))
+    .then(() => res.redirect('/posts'))
     .catch(next);
 }
 
