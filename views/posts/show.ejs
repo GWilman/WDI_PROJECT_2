@@ -10,7 +10,7 @@
     <button class="button alert">Delete</button>
   </form>
 <% } %>
-<% if(locals.isAuthenticated) { %>
+<% if(locals.LoggedIn) { %>
 <section>
   <h4>Leave a comment</h4>
   <form method="POST" action="/posts/<%= post.id %>/comments">

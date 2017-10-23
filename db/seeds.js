@@ -55,7 +55,7 @@ User
         }]
       }, {
         caption: 'Old but still great.',
-        videoURL: 'https://www.youtube.com/watch?v=J1kzMFnFSh0',
+        videoURL: 'https://www.youtube.com/watch?v=6hFdWGE6RWo&feature=youtu.be',
         createdBy: users[1],
         comments: [{
           content: 'Belter',

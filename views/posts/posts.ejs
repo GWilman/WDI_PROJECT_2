@@ -45,13 +45,23 @@
       <div class="col-8 post-container">
         <p class="post-message"><%= post.caption %></p>
         <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
-        <p><a href="/posts/<%= post.id %>">View details</a></p>
+        <div class="action-container">
+          <p>
+            <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
+              <a href="/posts/<%= post.id %>/edit">Edit/Delete</a>
+              <% } else { %>
+                &nbsp;
+              <% } %>
+              <span class="float-right"><a href="#">Add to Playlist</a>
+              </span>
+            </p>
+        </div>
         <% if(locals.isLoggedIn) { %>
-        <section>
+        <section class="clearfix">
           <h4>Leave a comment</h4>
           <form method="POST" action="/posts/<%= post.id %>/comments">
-            <textarea name="content" id="content" placeholder="Comment"></textarea>
-            <button class="button">Leave a comment</button>
+            <textarea class="comment-box" name="content" id="content" placeholder="Comment"></textarea>
+            <button class="btn btn-primary post-song post-comment">Post Comment</button>
           </form>
         </section>
         <% } %>

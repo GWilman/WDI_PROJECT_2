@@ -1,0 +1,21 @@
+<h1>Edit Account Details</h1>
+<% if(locals.message) { %>
+  <p><%= message %></p>
+<% } %>
+<form class="gen-form" method="POST" action="/profiles">
+  <input type="hidden" name="_method" value="PUT">
+  <div>
+    <label for="username">Username</label><br>
+    <input type="text" name="username" id="username" value="<%= user.username %>" required>
+  </div>
+  <div>
+    <label for="email">Email</label><br>
+    <input type="text" name="email" id="email" value="<%= user.email %>" required>
+  </div>
+  <div>
+    <label for="imageURL">Profile Picture (URL)</label><br>
+    <input type="text" name="imageURL" id="imageURL" value="<%= user.imageURL %>">
+  </div>
+  <br>
+  <button class="button">Save Changes</button>
+</form>

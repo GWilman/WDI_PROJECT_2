@@ -13,7 +13,7 @@ function indexRoute(req, res) {
     .populate('createdBy')
     .exec()
     .then(posts => {
-      console.log(posts);
+      // console.log(posts);
       res.render('posts/posts', { posts, youtubeParser });
     })
     .catch(err => {
@@ -65,10 +65,12 @@ function updateRoute(req, res, next) {
       for(const field in req.body) {
         post[field] = req.body[field];
       }
-
       return post.save();
     })
-    .then(() => res.redirect(`/posts/${req.params.id}`))
+    .then(() => {
+      req.flash('info', 'Post Updated!');
+      res.redirect('/posts');
+    })
     .catch((err) => {
       if(err.name === 'ValidationError') return res.badRequest(`/posts/${req.params.id}/edit`, err.toString());
       next(err);
@@ -84,7 +86,10 @@ function deleteRoute(req, res, next) {
       if(!post.belongsTo(req.user)) return res.unauthorized(`/posts/${post.id}`, 'You do not have permission to edit that resource');
       return post.remove();
     })
-    .then(() => res.redirect('/posts'))
+    .then(() => {
+      req.flash('info', 'Post Deleted!');
+      res.redirect('/posts');
+    })
     .catch(next);
 }
 

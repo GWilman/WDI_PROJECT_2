@@ -4,6 +4,7 @@ const router = express.Router();
 const staticsController = require('../controllers/statics');
 const sessionsController = require('../controllers/sessions');
 const registrationsController = require('../controllers/registrations');
+const profilesController = require('../controllers/profiles');
 const postsController = require('../controllers/posts');
 const notFoundController = require('../controllers/404');
 
@@ -22,9 +23,8 @@ router.route('/posts')
   .get(postsController.index)
   .post(postsController.create);
 
-// Show/Create/Delete Route
+// Update/Delete Route
 router.route('/posts/:id')
-  .get(postsController.show)
   .put(secureRoute, postsController.update)
   .delete(secureRoute, postsController.delete);
 
@@ -45,6 +45,14 @@ router.route('/logout')
 router.route('/register')
   .get(registrationsController.new)
   .post(registrationsController.create);
+
+// Update User Route
+router.route('/profiles/:id')
+  .put(secureRoute, profilesController.update);
+
+// Edit User Route
+router.route('/profiles/:id/edit')
+  .get(secureRoute, profilesController.edit);
 
 // Add Comment Route
 router.route('/posts/:id/comments')

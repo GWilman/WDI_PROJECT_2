@@ -4,11 +4,11 @@ function newRoute(req, res) {
   res.render('registrations/new');
 }
 
-function createRoute(req, res){
+function createRoute(req, res) {
   User
     .create(req.body)
     .then((user) => {
-      console.log(user);
+      // console.log(user);
       req.flash('info', `Thanks for registering, ${user.username}! Please login.`);
       res.redirect('/login');
     })
