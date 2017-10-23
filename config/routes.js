@@ -21,8 +21,8 @@ router.route('/about')
 
 // Index/Create Route
 router.route('/posts')
-  .get(postsController.index)
-  .post(postsController.create);
+  .get(secureRoute, postsController.index)
+  .post(secureRoute, postsController.create);
 
 // Update/Delete Route
 router.route('/posts/:id')

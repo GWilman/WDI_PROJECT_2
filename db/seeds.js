@@ -40,6 +40,12 @@ User
         comments: [{
           content: 'Love it.',
           createdBy: users[2]
+        }, {
+          content: 'Agreed, was listening to this the other day.',
+          createdBy: users[0]
+        }, {
+          content: 'Playing soon in London, should get tickets.',
+          createdBy: users[1]
         }]
       }, {
         caption: 'Big tune.',
@@ -50,17 +56,53 @@ User
         videoURL: 'https://www.youtube.com/watch?v=E6wllpw5udk&feature=youtu.be',
         createdBy: users[2],
         comments: [{
-          content: 'Very nice',
+          content: 'Very nice.',
           createdBy: users[1]
         }]
       }, {
-        caption: 'Old but still great.',
-        videoURL: 'https://www.youtube.com/watch?v=6hFdWGE6RWo&feature=youtu.be',
+        caption: 'Bit of Aretha...',
+        videoURL: 'https://www.youtube.com/watch?v=EFTWYAmgxcM',
         createdBy: users[1],
         comments: [{
           content: 'Belter',
           createdBy: users[0]
         }]
+      }, {
+        caption: 'Heard this one yet? It\'s great.',
+        videoURL: 'https://www.youtube.com/watch?v=NLLDQ_K6fCE',
+        createdBy: users[0],
+        comments: [{
+          content: 'Yes yes.',
+          createdBy: users[2]
+        }]
+      }, {
+        caption: 'Best youtube music vid ever.',
+        videoURL: 'https://www.youtube.com/watch?v=OxMJvdC9yoc',
+        createdBy: users[1],
+        comments: [{
+          content: 'Haha so good.',
+          createdBy: users[0]
+        }]
+      }, {
+        caption: 'Vibes.',
+        videoURL: 'https://www.youtube.com/watch?v=7Ej6g3KhinM',
+        createdBy: users[2],
+        comments: [{
+          content: 'Enjoying this one.',
+          createdBy: users[0]
+        }]
+      }, {
+        caption: 'Here\'s that one from the end of Saturday night',
+        videoURL: 'https://www.youtube.com/watch?v=8tKKNV5sXUs',
+        createdBy: users[2],
+        comments: [{
+          content: 'Yes! Great find.',
+          createdBy: users[1]
+        }]
+      }, {
+        caption: 'One of my favourites at the moment.',
+        videoURL: 'https://www.youtube.com/watch?v=NckpLXj5q7s',
+        createdBy: users[1]
       }]);
   })
   .catch((err) => console.log(err))

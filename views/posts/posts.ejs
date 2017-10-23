@@ -17,7 +17,7 @@
     <div class="col-8 new-post-container">
       <form method="POST" action="/posts">
         <div>
-          <p class="post-prompt"><small>Post a new track:</small></p>
+          <p class="post-prompt">Post a new track:</p>
         </div>
         <div>
           <label for="caption"></label>
@@ -55,7 +55,8 @@
               <% } %>
             </p>
         </div>
-        <h4>Comments</h4>
+        <h4><a href="#comments-<%= post.id %>" data-toggle="collapse">Show/Hide Comments (<%= post.comments.length %>)</a></h4>
+        <section id="comments-<%= post.id %>" class="collapse">
         <% post.comments.forEach((comment) => { %>
           <p class="comment"><strong><%= comment.createdBy.username %></strong>: <%= comment.content %></p>
           <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>
@@ -65,9 +66,7 @@
             </form>
           <% } %>
         <% }) %>
-        </section>
         <% if(locals.isLoggedIn) { %>
-        <section>
           <form method="POST" action="/posts/<%= post.id %>/comments">
             <textarea class="comment-box" name="content" id="content" placeholder="Leave a comment"></textarea>
             <button class="btn btn-primary post-song post-comment">Post Comment</button>
