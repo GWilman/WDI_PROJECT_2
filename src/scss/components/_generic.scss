@@ -102,8 +102,17 @@ h4, .comment-box, p {
   display: inline-block;
 }
 
+.comment {
+  margin-bottom: 2px;
+}
+
 .comment-box {
   margin-bottom: 12px;
+  margin-top: 10px;
+}
+
+.post-comment {
+  margin-top: 10px;
 }
 
 @media only screen and (max-width: 768px) {
