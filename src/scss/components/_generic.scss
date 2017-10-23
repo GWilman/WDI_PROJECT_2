@@ -11,6 +11,9 @@ button {
   cursor: pointer;
 }
 
+.playlist-header {
+  padding-left: 13px;
+}
 
 .headline {
   padding-left: 0;
@@ -80,6 +83,11 @@ h4, .comment-box, p {
   margin: 6px 0 4px 0;
 }
 
+.playlist-action {
+  margin: 0;
+  font-size: 10px;
+}
+
 .post-message {
   margin-top: 10px;
 }
@@ -95,6 +103,12 @@ h4, .comment-box, p {
 .wall-post-vid {
   height: 260px;
   width: 100%;
+}
+
+.playlist-vid {
+  width: 100%;
+  height: 120px;
+  margin: 4px auto;
 }
 
 .comment-box, .comment {

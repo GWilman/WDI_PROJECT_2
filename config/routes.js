@@ -47,13 +47,13 @@ router.route('/register')
   .get(registrationsController.new)
   .post(registrationsController.create);
 
-// Update User Route
-router.route('/profiles/:id')
-  .put(secureRoute, profilesController.update);
-
 // Edit User Route
 router.route('/profiles/:id/edit')
   .get(secureRoute, profilesController.edit);
+
+// Update User Route
+router.route('/profiles/:id')
+  .put(secureRoute, profilesController.update);
 
 // Add Comment Route
 router.route('/posts/:id/comments')
@@ -67,9 +67,13 @@ router.route('/posts/:id/comments/:commentId')
 router.route('/playlist/:id/add')
   .get(secureRoute, playlistsController.add);
 
+// Remove from playlist route
+router.route('/playlist/:id/remove')
+  .get(secureRoute, playlistsController.remove);
+
 // Show Playlist Route
 router.route('/playlist')
-  .get(secureRoute, playlistsController.show)
+  .get(secureRoute, playlistsController.show);
 
 // Catch All 404 Route
 router.get('*')

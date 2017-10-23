@@ -17,21 +17,31 @@ function addRoute(req, res, next) {
       user.userPlaylist.push(post);
       return user.save();
     })
-    .then(user => {
+    .then(() => {
       req.flash('info', 'Post added to your playlist!');
-      console.log(user.userPlaylist);
       res.redirect('/posts');
     })
     .catch(next);
 }
 
 function showRoute(req, res) {
-  console.log(req.user);
   return res.render('playlists/show', { user: req.user, youtubeParser });
 }
 
-function removeRoute(req, res) {
-
+// DOESN'T WORK
+function removeRoute(req, res, next) {
+  // const user = req.user;
+  //
+  // User
+  //   .find({'req.params.id': {$in: user.userPlaylist}})
+  //   .then((track) => {
+  //     // console.log(user.userPlaylist);
+  //     // const song = user.userPlaylist.findById(req.params.id);
+  //     console.log(track);
+  //     // req.flash('info', 'Post deleted from your playlist!');
+  //     // res.redirect('/posts');
+  //   })
+  //   .catch(next);
 }
 
 module.exports = {

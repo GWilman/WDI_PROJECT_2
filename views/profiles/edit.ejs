@@ -2,7 +2,7 @@
 <% if(locals.message) { %>
   <p><%= message %></p>
 <% } %>
-<form class="gen-form" method="POST" action="/profiles">
+<form class="gen-form" method="POST" action="/profiles/<%= user.id %>">
   <input type="hidden" name="_method" value="PUT">
   <div>
     <label for="username">Username</label><br>

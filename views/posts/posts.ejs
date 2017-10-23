@@ -36,7 +36,7 @@
       <% posts = posts.reverse(); %>
       <% posts.forEach(post => { %>
       <% const videoID = youtubeParser(post.videoURL); %>
-      <div class="col-2 poster-info">
+      <div class="col-2 poster-info" id="<%= post.id %>">
         <% if (post.createdBy) { %>
           <img class="profile-pic" src="<%= post.createdBy.imageURL %>" alt="profile-image">
           <p class="profile-info"><%= post.createdBy.username %> </p>
@@ -57,7 +57,7 @@
         </div>
         <h4>Comments</h4>
         <% post.comments.forEach((comment) => { %>
-          <p class="comment"><strong><%= comment.createdBy.username %></strong> said: <%= comment.content %></p>
+          <p class="comment"><strong><%= comment.createdBy.username %></strong>: <%= comment.content %></p>
           <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>
             <form class="delete-comment" method="POST" action="/posts/<%= post.id %>/comments/<%= comment.id %>">
               <input type="hidden" name="_method" value="DELETE">
