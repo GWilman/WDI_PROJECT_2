@@ -44,7 +44,8 @@
               <% } else { %>
               <img class="profile-pic" src="/images/default_user.png" alt="profile-image">
               <% } %>
-            <p class="profile-info"><%= post.createdBy.username %> </p>
+            <p class="profile-info"><%= post.createdBy.username %></p>
+            <p class="profile-info"><small><%= post.createdAt.toDateString() %></small></p>
           <% } %>
         </div>
         <div class="col-8 post-container">

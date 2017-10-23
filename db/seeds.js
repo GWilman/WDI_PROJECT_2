@@ -106,6 +106,10 @@ User
         caption: 'One of my favourites at the moment.',
         videoURL: 'https://www.youtube.com/watch?v=NckpLXj5q7s',
         createdBy: users[1]
+      }, {
+        caption: 'Koze, so good.',
+        videoURL: 'https://www.youtube.com/watch?v=cxz8qJ2B8Ug',
+        createdBy: users[0]
       }]);
   })
   .catch((err) => console.log(err))
