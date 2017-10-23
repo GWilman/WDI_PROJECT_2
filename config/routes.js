@@ -6,6 +6,7 @@ const sessionsController = require('../controllers/sessions');
 const registrationsController = require('../controllers/registrations');
 const profilesController = require('../controllers/profiles');
 const postsController = require('../controllers/posts');
+const playlistsController = require('../controllers/playlists');
 const notFoundController = require('../controllers/404');
 
 const secureRoute = require('../lib/secureRoute');
@@ -61,6 +62,14 @@ router.route('/posts/:id/comments')
 // Delete Comment Route
 router.route('/posts/:id/comments/:commentId')
   .delete(secureRoute, postsController.deleteComment);
+
+// Add to Playlist Route
+router.route('/playlist/:id/add')
+  .get(secureRoute, playlistsController.add);
+
+// Show Playlist Route
+router.route('/playlist')
+  .get(secureRoute, playlistsController.show)
 
 // Catch All 404 Route
 router.get('*')

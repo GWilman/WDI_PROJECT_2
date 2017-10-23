@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  imageURL: String
+  imageURL: String,
+  userPlaylist: []
 });
 
 userSchema.methods.validatePassword = function validatePassword(password) {
