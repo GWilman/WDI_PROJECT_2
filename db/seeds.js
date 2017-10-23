@@ -74,6 +74,9 @@ User
         comments: [{
           content: 'Yes yes.',
           createdBy: users[2]
+        }, {
+          content: 'Really nice.',
+          createdBy: users[0]
         }]
       }, {
         caption: 'Best youtube music vid ever.',

@@ -1,16 +1,18 @@
+<main class="container">
 <% if(locals.message) { %>
   <p><%= message %></p>
 <% } %>
-<h1>Login</h1>
-<form class="gen-form" method="POST" action="/login">
-  <div>
-    <label for="email">Email</label><br>
-    <input type="text" name="email" id="email" required>
-  </div>
-  <div>
-    <label for="password">Password</label><br>
-    <input type="password" name="password" id="password" required>
-  </div>
-  <br>
-  <button class="button">Login</button>
-</form>
+  <h1>Login</h1>
+  <form class="gen-form" method="POST" action="/login">
+    <div>
+      <label for="email">Email</label><br>
+      <input type="text" name="email" id="email" required>
+    </div>
+    <div>
+      <label for="password">Password</label><br>
+      <input type="password" name="password" id="password" required>
+    </div>
+    <br>
+    <button class="button">Login</button>
+  </form>
+</main>

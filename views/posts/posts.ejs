@@ -1,5 +1,6 @@
-<div class="col-12">
-  <div class="row">
+<main class="container">
+  <div class="col-12">
+    <div class="row">
     <div class="col-2">
     </div>
     <div class="col-8 headline">
@@ -32,50 +33,55 @@
     <div class="col-lg-2">
     </div>
   </div>
-  <div class="row">
+    <div class="row">
       <% posts = posts.reverse(); %>
       <% posts.forEach(post => { %>
-      <% const videoID = youtubeParser(post.videoURL); %>
-      <div class="col-2 poster-info" id="<%= post.id %>">
-        <% if (post.createdBy) { %>
-          <img class="profile-pic" src="<%= post.createdBy.imageURL %>" alt="profile-image">
-          <p class="profile-info"><%= post.createdBy.username %> </p>
-        <% } %>
-      </div>
-      <div class="col-8 post-container">
-        <p class="post-message"><%= post.caption %></p>
-        <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
-        <div class="action-container">
-          <p>
-            <a href="/playlist/<%= post.id %>/add">Add to Playlist</a>
-            <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
-              <span class="float-right">
-              <a href="/posts/<%= post.id %>/edit">Edit/Delete</a>
-              </span>
+        <% const videoID = youtubeParser(post.videoURL); %>
+        <div class="col-2 poster-info" id="<%= post.id %>">
+          <% if (post.createdBy) { %>
+            <% if (post.createdBy.imageURL) { %>
+              <img class="profile-pic" src="<%= post.createdBy.imageURL %>" alt="profile-image">
+              <% } else { %>
+              <img class="profile-pic" src="/images/default_user.png" alt="profile-image">
+              <% } %>
+            <p class="profile-info"><%= post.createdBy.username %> </p>
+          <% } %>
+        </div>
+        <div class="col-8 post-container">
+          <p class="post-message"><%= post.caption %></p>
+          <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
+          <div class="action-container">
+            <p>
+              <a href="/playlist/<%= post.id %>/add">Add to Playlist</a>
+              <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
+                <span class="float-right">
+                <a href="/posts/<%= post.id %>/edit">Edit/Delete</a>
+                </span>
               <% } %>
             </p>
-        </div>
-        <h4><a href="#comments-<%= post.id %>" data-toggle="collapse">Show/Hide Comments (<%= post.comments.length %>)</a></h4>
-        <section id="comments-<%= post.id %>" class="collapse">
-        <% post.comments.forEach((comment) => { %>
-          <p class="comment"><strong><%= comment.createdBy.username %></strong>: <%= comment.content %></p>
-          <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>
-            <form class="delete-comment" method="POST" action="/posts/<%= post.id %>/comments/<%= comment.id %>">
-              <input type="hidden" name="_method" value="DELETE">
-              <span class="float-right"><button class="delete-comment-btn">Delete</button></span>
+          </div>
+          <h4><a href="#comments-<%= post.id %>" data-toggle="collapse">Show/Hide Comments (<%= post.comments.length %>)</a></h4>
+          <section id="comments-<%= post.id %>" class="collapse">
+          <% post.comments.forEach((comment) => { %>
+            <p class="comment"><strong><%= comment.createdBy.username %></strong>: <%= comment.content %></p>
+            <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>
+              <form class="delete-comment" method="POST" action="/posts/<%= post.id %>/comments/<%= comment.id %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <span class="float-right"><button class="delete-comment-btn">Delete</button></span>
+              </form>
+            <% } %>
+          <% }) %>
+          <% if(locals.isLoggedIn) { %>
+            <form method="POST" action="/posts/<%= post.id %>/comments">
+              <textarea class="comment-box" name="content" id="content" placeholder="Leave a comment"></textarea>
+              <button class="btn btn-primary post-song post-comment">Post Comment</button>
             </form>
+          </section>
           <% } %>
-        <% }) %>
-        <% if(locals.isLoggedIn) { %>
-          <form method="POST" action="/posts/<%= post.id %>/comments">
-            <textarea class="comment-box" name="content" id="content" placeholder="Leave a comment"></textarea>
-            <button class="btn btn-primary post-song post-comment">Post Comment</button>
-          </form>
-        </section>
-        <% } %>
-      </div>
-      <div class="col-lg-2">
-      </div>
-    <% }); %>
+        </div>
+        <div class="col-lg-2">
+        </div>
+      <% }); %>
+    </div>
   </div>
-</div>
+</main>

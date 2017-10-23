@@ -1,28 +1,30 @@
-<h1>Create Account</h1>
-<% if(locals.message) { %>
-  <p><%= message %></p>
-<% } %>
-<form class="gen-form" method="POST" action="/register">
-  <div>
-    <label for="username">Username</label><br>
-    <input type="text" name="username" id="username" required>
-  </div>
-  <div>
-    <label for="email">Email</label><br>
-    <input type="text" name="email" id="email" required>
-  </div>
-  <div>
-    <label for="imageURL">Profile Picture (URL)</label><br>
-    <input type="text" name="imageURL" id="imageURL">
-  </div>
-  <div>
-    <label for="password">Password</label><br>
-    <input type="password" name="password" id="password" required>
-  </div>
-  <div>
-    <label for="passwordConfirmation">Password Confirmation</label><br>
-    <input type="password" name="passwordConfirmation" id="passwordConfirmation" required>
-  </div>
-  <br>
-  <button class="button">Create Account</button>
-</form>
+<main class="container">
+  <h1>Create Account</h1>
+  <% if(locals.message) { %>
+    <p><%= message %></p>
+  <% } %>
+  <form class="gen-form" method="POST" action="/register">
+    <div>
+      <label for="username">Username</label><br>
+      <input type="text" name="username" id="username" required>
+    </div>
+    <div>
+      <label for="email">Email</label><br>
+      <input type="text" name="email" id="email" required>
+    </div>
+    <div>
+      <label for="imageURL">Profile Picture (URL)</label><br>
+      <input type="text" name="imageURL" id="imageURL">
+    </div>
+    <div>
+      <label for="password">Password</label><br>
+      <input type="password" name="password" id="password" required>
+    </div>
+    <div>
+      <label for="passwordConfirmation">Password Confirmation</label><br>
+      <input type="password" name="passwordConfirmation" id="passwordConfirmation" required>
+    </div>
+    <br>
+    <button class="button">Create Account</button>
+  </form>
+</main>
