@@ -26,7 +26,7 @@
         </div>
         <div>
           <label for="videoURL"></label>
-          <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Paste YouTube link here..."required><button class="btn btn-primary post-song">Post</button>
+          <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Paste YouTube link here..."><button class="btn btn-primary post-song">Post</button>
         </div>
       </form>
     </div>
@@ -50,6 +50,7 @@
         </div>
         <div class="col-8 post-container">
           <p class="post-message"><%= post.caption %></p>
+          <% if (post.videoURL) { %>
           <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
           <div class="action-container">
             <p>
@@ -61,8 +62,13 @@
               <% } %>
             </p>
           </div>
+          <% } %>
           <h4><a href="#comments-<%= post.id %>" data-toggle="collapse">Show/Hide Comments (<%= post.comments.length %>)</a></h4>
+          <% if (post.videoURL) { %>
           <section id="comments-<%= post.id %>" class="collapse">
+          <% } else { %>
+          <section id="comments-<%= post.id %>">
+          <% } %>
           <% post.comments.forEach((comment) => { %>
             <p class="comment"><strong><%= comment.createdBy.username %></strong>: <%= comment.content %></p>
             <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>

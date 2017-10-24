@@ -36,7 +36,7 @@ h1 {
   color: white;
   background-color: black;
   display: inline-block;
-  padding: 0 10px;
+  padding: 4px 10px;
 }
 
 .bg-blue {
@@ -88,6 +88,8 @@ h4, .comment-box, p {
 .new-post-container {
   background: white;
   padding: 14px 10px;
+  border: 2px solid #0b244c;
+  border-radius: 10px;
 }
 
 .profile-pic {

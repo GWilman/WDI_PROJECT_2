@@ -35,9 +35,9 @@ function removeRoute(req, res, next) {
   User
     .findById(user.id)
     .then((user) => {
-      console.log(user);
-      const track = user.userPlaylist[0].id(req.params.id);
-      track.remove();
+      const track = user.userPlaylist.find(song => song._id == req.params.id);
+      user.userPlaylist.splice(user.userPlaylist.indexOf(track), 1);
+      user.save();
       req.flash('info', 'Post deleted from your playlist!');
       res.redirect('/posts');
     })
