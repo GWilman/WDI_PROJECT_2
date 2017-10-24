@@ -44,8 +44,8 @@
               <% } else { %>
               <img class="profile-pic" src="/images/default_user.png" alt="profile-image">
               <% } %>
-            <p class="profile-info"><%= post.createdBy.username %></p>
-            <p class="profile-info"><small><%= post.createdAt.toDateString() %></small></p>
+            <p class="profile-info uname-post"><%= post.createdBy.username %></p>
+            <p class="profile-info uname-post"><small><%= post.createdAt.toDateString() %></small></p>
           <% } %>
         </div>
         <div class="col-8 post-container">
@@ -63,12 +63,8 @@
             </p>
           </div>
           <% } %>
-          <h4><a href="#comments-<%= post.id %>" data-toggle="collapse">Show/Hide Comments (<%= post.comments.length %>)</a></h4>
-          <% if (post.videoURL) { %>
+          <h4><a href="#comments-<%= post.id %>" data-toggle="collapse">Comments (<%= post.comments.length %>)</a></h4>
           <section id="comments-<%= post.id %>" class="collapse">
-          <% } else { %>
-          <section id="comments-<%= post.id %>">
-          <% } %>
           <% post.comments.forEach((comment) => { %>
             <p class="comment"><strong><%= comment.createdBy.username %></strong>: <%= comment.content %></p>
             <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>

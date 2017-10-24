@@ -39,7 +39,7 @@ function removeRoute(req, res, next) {
       user.userPlaylist.splice(user.userPlaylist.indexOf(track), 1);
       user.save();
       req.flash('info', 'Post deleted from your playlist!');
-      res.redirect('/posts');
+      res.redirect('/playlist');
     })
     .catch(next);
 }

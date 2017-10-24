@@ -11,12 +11,13 @@
       <input type="text" name="videoURL" id="videoURL" value="<%= post.videoURL %>" required>
     </div>
     <br>
-    <button class="button">Update</button>
+    <button class="btn btn-primary">Update</button>
   </form>
+  <br>
   <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
     <form method="POST" action="/posts/<%= post.id %>">
       <input type="hidden" name="_method" value="DELETE">
-      <button class="button alert">Delete</button>
+      <button class="btn btn-danger">Delete Post</button>
     </form>
   <% } %>
 </main>
