@@ -100,7 +100,6 @@ function createCommentRoute(req, res, next) {
     .then((post) => {
       if(!post) return res.notFound();
       post.comments.push(req.body);
-      console.log(post.comments);
       return post.save();
     })
     .then(() => res.redirect('/posts'))

@@ -95,7 +95,7 @@ User
           createdBy: users[0]
         }]
       }, {
-        caption: 'Here\'s that one from the end of Saturday night',
+        caption: 'Here\'s that one from the end of Saturday night.',
         videoURL: 'https://www.youtube.com/watch?v=8tKKNV5sXUs',
         createdBy: users[2],
         comments: [{

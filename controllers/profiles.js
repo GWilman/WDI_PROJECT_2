@@ -24,7 +24,10 @@ function updateRoute(req, res, next) {
       }
       return user.save();
     })
-    .then(() => res.redirect('/posts'))
+    .then(() => {
+      req.flash('success', 'Profile updated!');
+      res.redirect('/posts');
+    })
     .catch((err) => {
       if(err.name === 'ValidationError') return res.badRequest(`/profiles/${req.params.id}/edit`, err.toString());
       next(err);

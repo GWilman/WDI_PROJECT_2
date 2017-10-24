@@ -22,23 +22,6 @@ h1 {
   background: url('../images/vinyl.jpg') center /cover;
 }
 
-.not-found-pic {
-  width: 100%;
-  height: 600px;
-  background: url('../images/404.jpg') center /cover;
-}
-
-.not-found-container {
-  padding-top: 100px;
-}
-
-.not-found {
-  color: white;
-  background-color: black;
-  display: inline-block;
-  padding: 4px 10px;
-}
-
 .bg-blue {
   background: #0b244c;
 }
@@ -182,6 +165,18 @@ h4, .comment-box, p {
   margin-top: 10px;
 }
 
+.gen-form {
+  label {
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+  input {
+    width: 60%;
+    border: 0;
+    border-radius: 4px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .wall-post-vid {height: 180px;}
   .post-song {float: none;}
@@ -191,15 +186,10 @@ h4, .comment-box, p {
 }
 
 @media only screen and (max-width: 576px) {
-  .uname-post {font-size: 9px;}
-}
-
-.gen-form label {
-  margin-bottom: 0;
-  margin-top: 10px;
-}
-
-.gen-form input {
-  width: 60%;
-  border-radius: 2px;
+  .profile-info {display: none;}
+  .gen-form {
+    input {
+      width: 90%;
+    }
+  }
 }

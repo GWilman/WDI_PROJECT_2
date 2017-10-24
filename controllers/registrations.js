@@ -9,12 +9,12 @@ function createRoute(req, res) {
     .create(req.body)
     .then((user) => {
       // console.log(user);
-      req.flash('info', `Thanks for registering, ${user.username}! Please login.`);
+      req.flash('success', `Thanks for registering, ${user.username}! Please login.`);
       res.redirect('/login');
     })
     .catch((err) => {
       if(err.name === 'ValidationError') {
-        return res.status(400).render('registrations/new', { message: 'Passwords do not match' });
+        return res.status(400).render('registrations/new', { message: 'Passwords do not match.' });
       }
       res.status(500).end();
     });

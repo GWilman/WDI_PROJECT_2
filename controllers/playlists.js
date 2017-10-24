@@ -18,7 +18,7 @@ function addRoute(req, res, next) {
       return user.save();
     })
     .then(() => {
-      req.flash('info', 'Post added to your playlist!');
+      req.flash('info', 'Track added to your playlist!');
       res.redirect('/posts');
     })
     .catch(next);
@@ -38,7 +38,7 @@ function removeRoute(req, res, next) {
       const track = user.userPlaylist.find(song => song._id == req.params.id);
       user.userPlaylist.splice(user.userPlaylist.indexOf(track), 1);
       user.save();
-      req.flash('info', 'Post deleted from your playlist!');
+      req.flash('info', 'Track removed from your playlist!');
       res.redirect('/playlist');
     })
     .catch(next);

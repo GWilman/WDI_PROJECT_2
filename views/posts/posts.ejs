@@ -26,7 +26,7 @@
         </div>
         <div>
           <label for="videoURL"></label>
-          <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Paste YouTube link here..."><button class="btn btn-primary post-song">Post</button>
+          <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Paste YouTube link here..." required><button class="btn btn-primary post-song">Post</button>
         </div>
       </form>
     </div>
@@ -44,8 +44,9 @@
               <% } else { %>
               <img class="profile-pic" src="/images/default_user.png" alt="profile-image">
               <% } %>
-            <p class="profile-info uname-post"><%= post.createdBy.username %></p>
-            <p class="profile-info uname-post"><small><%= post.createdAt.toDateString() %></small></p>
+            <p class="profile-info"><%= post.createdBy.username %></p>
+            <p class="profile-info"><small>Posted on:</small></p>
+            <p class="profile-info"><small><%= post.createdAt.toDateString() %></small></p>
           <% } %>
         </div>
         <div class="col-8 post-container">

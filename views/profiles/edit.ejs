@@ -17,7 +17,16 @@
       <label for="imageURL">Profile Picture (URL)</label><br>
       <input type="text" name="imageURL" id="imageURL" value="<%= user.imageURL %>">
     </div>
+    <div>
+      <label for="password">Password</label><br>
+      <input type="password" name="password" id="password" required>
+      <small class="form-text text-muted">Please re-enter or change your password here.</small>
+    </div>
+    <div>
+      <label for="passwordConfirmation">Password Confirmation</label><br>
+      <input type="password" name="passwordConfirmation" id="passwordConfirmation" required>
+    </div>
     <br>
-    <button class="button">Save Changes</button>
+    <button class="btn btn-primary">Save Changes</button>
   </form>
 </main>

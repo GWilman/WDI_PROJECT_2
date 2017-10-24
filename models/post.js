@@ -14,7 +14,7 @@ commentSchema.methods.belongsTo = function commentBelongsTo(user) {
 
 const postSchema = new mongoose.Schema({
   caption: { type: String, required: true },
-  videoURL: { type: String },
+  videoURL: { type: String, required: true },
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   comments: [ commentSchema ]
 }, {
