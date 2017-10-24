@@ -3,11 +3,11 @@
   <div class="col-12">
     <div class="row">
       <% if (user.userPlaylist.length === 0) { %>
-        <h3 class="playlist-header">Your playlist is empty! Add tracks to your playlist from <a href="/posts">The Wall</a></h3>
+        <h3 class="playlist-header"><br>Your playlist is empty!<br>Add tracks to your playlist from <a href="/posts">The Wall</a>.</h3>
       <% } %>
         <% user.userPlaylist.forEach(post => { %>
         <% const videoID = youtubeParser(post.videoURL); %>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <iframe class="playlist-vid" src="https://www.youtube.com/embed/<%= videoID %>"   frameborder="0" allowfullscreen></iframe>
         <div class="playlist-action">
           <p>

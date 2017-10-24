@@ -1,1 +1,1 @@
-"use strict";
+"use strict";function init(){console.log("working")}$(init);

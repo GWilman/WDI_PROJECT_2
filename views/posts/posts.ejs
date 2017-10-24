@@ -53,7 +53,7 @@
           <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
           <div class="action-container">
             <p>
-              <a href="/playlist/<%= post.id %>/add">Add to Playlist</a>
+              <a href="/playlist/<%= post.id %>/add">+ Add to Playlist</a>
               <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
                 <span class="float-right">
                 <a href="/posts/<%= post.id %>/edit">Edit/Delete</a>

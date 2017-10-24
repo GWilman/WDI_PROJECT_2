@@ -76,7 +76,7 @@ router.route('/playlist')
   .get(secureRoute, playlistsController.show);
 
 // Catch All 404 Route
-router.get('*')
+router.route('*')
   .get(notFoundController.notFound);
 
 module.exports = router;

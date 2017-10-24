@@ -30,18 +30,18 @@ function showRoute(req, res) {
 
 // DOESN'T WORK
 function removeRoute(req, res, next) {
-  // const user = req.user;
-  //
-  // User
-  //   .find({'req.params.id': {$in: user.userPlaylist}})
-  //   .then((track) => {
-  //     // console.log(user.userPlaylist);
-  //     // const song = user.userPlaylist.findById(req.params.id);
-  //     console.log(track);
-  //     // req.flash('info', 'Post deleted from your playlist!');
-  //     // res.redirect('/posts');
-  //   })
-  //   .catch(next);
+  console.log(req.params.id);
+  const user = req.user;
+  User
+    .findById(user.id)
+    .then((user) => {
+      console.log(user);
+      const track = user.userPlaylist[0].id(req.params.id);
+      track.remove();
+      req.flash('info', 'Post deleted from your playlist!');
+      res.redirect('/posts');
+    })
+    .catch(next);
 }
 
 module.exports = {
