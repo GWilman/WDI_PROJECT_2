@@ -1,3 +1,5 @@
+$bg-blue: #0b244c;
+
 body {
   background: #d6d6d6;
   padding-top: 50px;
@@ -8,7 +10,7 @@ h1 {
 }
 
 .navbar-brand {
-  text-shadow: 2px 2px black;
+  text-shadow: 2px 2px #000;
 }
 
 .alert {
@@ -16,153 +18,16 @@ h1 {
   padding: 1rem 1.25rem .75rem;
 }
 
-.background-pic {
-  width: 100%;
-  height: 240px;
-  background: url('../images/vinyl.jpg') center /cover;
-}
-
 .bg-blue {
-  background: #0b244c;
-}
-
-nav {
-  transition: top 0.2s ease-in-out;
-}
-
-.hide-nav {
-  top: -50px;
+  background: $bg-blue;
 }
 
 button {
   cursor: pointer;
 }
 
-.playlist-header {
-  padding-left: 13px;
-}
-
-.headline {
-  padding-left: 0;
-}
-
-h4, .comment-box, p {
+h4, p {
   font-size: 12px;
-}
-
-.comment-box, .new-post-info {
-  border-radius: 4px;
-  border: 1px solid lighten(gray, 40%);
-  padding-left: 2px;
-}
-
-.delete-comment {
-  display: inline;
-}
-
-.delete-comment-btn {
-  background: none;
-  border: none;
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-  color: #007bff;
-}
-
-.delete-comment-btn:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-
-.new-post-container {
-  background: white;
-  padding: 14px 10px;
-  border: 2px solid #0b244c;
-  border-radius: 10px;
-}
-
-.profile-pic {
-  width: 100%;
-  border-radius: 100px;
-  margin: 0 auto 6px auto;
-}
-
-.profile-info {
-  text-align: center;
-  margin: 0 auto;
-}
-
-.post-prompt {
-  padding-left: 7px;
-  margin-bottom: 0;
-  margin-top: -4px;
-}
-
-.new-post-info {
-  width: 80%;
-  margin: 2px;
-  font-size: 12px;
-}
-
-.poster-info {
-  margin-top: 14px;
-}
-
-.post-container {
-  background: white;
-  border-radius: 0px 24px 24px 24px;
-  margin: 14px 0;
-  padding-bottom: 6px;
-}
-
-.action-container {
-  margin: 6px 0 4px 0;
-}
-
-.playlist-action {
-  margin: 0;
-  font-size: 10px;
-}
-
-.post-message {
-  margin: 12px 0 10px 0;
-}
-
-.post-song {
-  float: right;
-  font-size: 12px;
-  line-height: 1;
-  margin-right: 7px;
-  margin-left: 6px;
-}
-
-.wall-post-vid {
-  height: 260px;
-  width: 100%;
-}
-
-.playlist-vid {
-  width: 100%;
-  height: 120px;
-  margin: 4px auto;
-}
-
-.comment-box, .comment {
-  width: 70%;
-  display: inline-block;
-}
-
-.comment {
-  margin-bottom: 2px;
-}
-
-.comment-box {
-  margin-bottom: 12px;
-  margin-top: 10px;
-}
-
-.post-comment {
-  margin-top: 10px;
 }
 
 .gen-form {
@@ -174,19 +39,11 @@ h4, .comment-box, p {
     width: 60%;
     border: 0;
     border-radius: 4px;
+    padding: 4px 6px;
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .wall-post-vid {height: 180px;}
-  .post-song {float: none;}
-  .new-post-info {width: 95%;}
-  .comment-box {width: 100%;}
-  .post-comment {margin: 0 auto 12px auto;}
-}
-
 @media only screen and (max-width: 576px) {
-  .profile-info {display: none;}
   .gen-form {
     input {
       width: 90%;
