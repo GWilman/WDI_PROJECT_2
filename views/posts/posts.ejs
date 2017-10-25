@@ -1,37 +1,37 @@
 <main class="container">
   <div class="col-12">
     <div class="row">
-    <div class="col-2">
-    </div>
-    <div class="col-8 headline">
-      <h1>The Wall</h1>
-    </div>
-    <div class="col-2">
-    </div>
-  </div>
-</div>
-<div class="col-12">
-  <div class="row">
-    <div class="col-2">
-    </div>
-    <div class="col-8 new-post-container">
-      <form method="POST" action="/posts">
-        <div>
-          <p class="post-prompt">Post a new track:</p>
-        </div>
-        <div>
-          <label for="caption"></label>
-          <input class="new-post-info" type="text" name="caption" id="caption" placeholder="Write a message..." required>
-        </div>
-        <div>
-          <label for="videoURL"></label>
-          <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Paste YouTube link here..." required><button class="btn btn-primary post-song">Post</button>
-        </div>
-      </form>
-    </div>
-    <div class="col-lg-2">
+      <div class="col-2">
+      </div>
+      <div class="col-8 headline">
+        <h1>The Wall</h1>
+      </div>
+      <div class="col-2">
+      </div>
     </div>
   </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-2">
+      </div>
+      <div class="col-8 new-post-container">
+        <form method="POST" action="/posts">
+          <div>
+            <p class="post-prompt">Post a new track:</p>
+          </div>
+          <div>
+            <label for="caption"></label>
+            <input class="new-post-info" type="text" name="caption" id="caption" placeholder="Write a message..." required>
+          </div>
+          <div>
+            <label for="videoURL"></label>
+            <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Paste YouTube link here..." required><button class="btn btn-primary post-song">Post</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-2">
+      </div>
+    </div>
     <div class="row">
       <% posts = posts.reverse(); %>
       <% posts.forEach(post => { %>
@@ -40,9 +40,9 @@
           <% if (post.createdBy) { %>
             <% if (post.createdBy.imageURL) { %>
               <img class="profile-pic" src="<%= post.createdBy.imageURL %>" alt="profile-image">
-              <% } else { %>
+            <% } else { %>
               <img class="profile-pic" src="/images/default_user.png" alt="profile-image">
-              <% } %>
+            <% } %>
             <p class="profile-info"><%= post.createdBy.username %></p>
             <p class="profile-info"><small>Posted on:</small></p>
             <p class="profile-info"><small><%= post.createdAt.toDateString() %></small></p>
@@ -51,41 +51,39 @@
         <div class="col-8 post-container">
           <p class="post-message"><%= post.caption %></p>
           <% if (post.videoURL) { %>
-          <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
-          <div class="action-container">
-            <p>
-            <% const track = user.userPlaylist.find(song => song._id == post.id); %>
-            <% if (track) { %>
-              <a href="/playlist/<%= post.id %>/remove">- Remove from Playlist</a>
-            <% } else { %>
-              <a href="/playlist/<%= post.id %>/add">+ Add to Playlist</a>
-            <% } %>
-              <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
-                <span class="float-right">
+            <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
+            <div class="action-container">
+              <p>
+                <% const track = user.userPlaylist.find(song => song._id == post.id); %>
+                <% if (track) { %>
+                  <a class="remove-color" href="/playlist/<%= post.id %>/remove">- Remove from Playlist</a>
+                <% } else { %>
+                  <a class="add-color" href="/playlist/<%= post.id %>/add">+ Add to Playlist</a>
+                <% } %>
+                <% if (post.belongsTo(user)) { %>
+                  <span class="float-right">
                 <a href="/posts/<%= post.id %>/edit">Edit/Delete</a>
                 </span>
-              <% } %>
-            </p>
-          </div>
+                <% } %>
+              </p>
+            </div>
           <% } %>
           <h4><a href="#comments-<%= post.id %>" data-toggle="collapse">Comments (<%= post.comments.length %>)</a></h4>
           <section id="comments-<%= post.id %>" class="collapse">
-          <% post.comments.forEach((comment) => { %>
-            <p class="comment"><strong><%= comment.createdBy.username %></strong>: <%= comment.content %></p>
-            <% if(locals.isLoggedIn && comment.belongsTo(user)) { %>
-              <form class="delete-comment" method="POST" action="/posts/<%= post.id %>/comments/<%= comment.id %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <span class="float-right"><button class="delete-comment-btn">Delete</button></span>
-              </form>
-            <% } %>
-          <% }) %>
-          <% if(locals.isLoggedIn) { %>
+            <% post.comments.forEach((comment) => { %>
+              <p class="comment"><strong><%= comment.createdBy.username %></strong>: <%= comment.content %></p>
+              <% if (comment.belongsTo(user)) { %>
+                <form class="delete-comment" method="POST" action="/posts/<%= post.id %>/comments/<%= comment.id %>">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <span class="float-right"><button class="delete-comment-btn">Delete</button></span>
+                </form>
+              <% } %>
+            <% }) %>
             <form method="POST" action="/posts/<%= post.id %>/comments">
               <textarea class="comment-box" name="content" id="content" placeholder="Leave a comment"></textarea>
               <button class="btn btn-primary post-song post-comment">Post Comment</button>
             </form>
           </section>
-          <% } %>
         </div>
         <div class="col-lg-2">
         </div>

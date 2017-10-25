@@ -1,8 +1,10 @@
 <main class="container">
   <h1>An app to share music with friends.</h1>
   <br>
-  <h3>Trax is simply a tune-sharing platform for you and your friends.</h3>
+  <h3>TRAX is a simple tune-sharing platform for you and your friends.</h3>
   <h3>You can post all of the new music you like, have a chat and build a personal playlist of all your favourite songs from the wall.</h3>
   <br>
-  <h3><a href="/register">Create an account</a> in seconds to get started!</a></h3>
+  <% if (!locals.isLoggedIn) { %>
+    <h3><a href="/register">Create an account</a> in seconds to get started!</a></h3>
+  <% } %>
 </main>
