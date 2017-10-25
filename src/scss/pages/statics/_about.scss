@@ -1,16 +1,16 @@
 $bg-blue: #0b244c;
 
-.not-found-pic {
+.about-pic {
   width: 100%;
   height: 600px;
-  background: url('../images/404.jpg') center /cover;
+  background: url('../images/about.jpg') center /cover;
 }
 
-.not-found-container {
+.about-container {
   padding-top: 100px;
 }
 
-.not-found {
+.about-text {
   color: #fff;
   background-color: $bg-blue;
   display: inline-block;
