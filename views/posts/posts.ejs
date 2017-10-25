@@ -13,7 +13,6 @@
 <div class="col-12">
   <div class="row">
     <div class="col-2">
-      <%# Maybe current users image here%>
     </div>
     <div class="col-8 new-post-container">
       <form method="POST" action="/posts">
@@ -55,7 +54,12 @@
           <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
           <div class="action-container">
             <p>
+            <% const track = user.userPlaylist.find(song => song._id == post.id); %>
+            <% if (track) { %>
+              <a href="/playlist/<%= post.id %>/remove">- Remove from Playlist</a>
+            <% } else { %>
               <a href="/playlist/<%= post.id %>/add">+ Add to Playlist</a>
+            <% } %>
               <% if (locals.isLoggedIn && post.belongsTo(user)) { %>
                 <span class="float-right">
                 <a href="/posts/<%= post.id %>/edit">Edit/Delete</a>
