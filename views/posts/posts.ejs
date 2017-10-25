@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-2">
       </div>
-      <div class="col-8 new-post-container">
+      <div class="col-9 col-md-8 new-post-container">
         <form method="POST" action="/posts">
           <div>
             <p class="post-prompt">Post a new track:</p>
@@ -29,7 +29,7 @@
           </div>
         </form>
       </div>
-      <div class="col-lg-2">
+      <div class="col-md-2">
       </div>
     </div>
     <div class="row">
@@ -48,7 +48,7 @@
             <p class="profile-info"><small><%= post.createdAt.toDateString() %></small></p>
           <% } %>
         </div>
-        <div class="col-8 post-container">
+        <div class="col-9 col-md-8 post-container">
           <p class="post-message"><%= post.caption %></p>
           <% if (post.videoURL) { %>
             <iframe class="wall-post-vid" src="https://www.youtube.com/embed/<%= videoID %>" frameborder="0" allowfullscreen></iframe>
@@ -85,7 +85,7 @@
             </form>
           </section>
         </div>
-        <div class="col-lg-2">
+        <div class="col-md-2">
         </div>
       <% }); %>
     </div>

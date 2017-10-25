@@ -118,7 +118,7 @@ $bg-blue: #0b244c;
 }
 
 @media only screen and (max-width: 768px) {
-  .wall-post-vid {height: 180px;}
+  .wall-post-vid {height: 220px;}
   .post-song {float: none;}
   .new-post-info {width: 95%;}
   .comment-box {width: 100%;}
@@ -127,4 +127,5 @@ $bg-blue: #0b244c;
 
 @media only screen and (max-width: 576px) {
   .profile-info {display: none;}
+  .wall-post-vid {height: 130px;}
 }
