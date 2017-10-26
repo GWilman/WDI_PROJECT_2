@@ -1,20 +1,20 @@
 <main class="container">
   <div class="col-12">
     <div class="row">
-      <div class="col-2">
+      <div class="col-md-2">
       </div>
-      <div class="col-8 headline">
+      <div class="col-12 col-md-8 headline">
         <h1>The Wall</h1>
       </div>
-      <div class="col-2">
+      <div class="col-md-2">
       </div>
     </div>
   </div>
   <div class="col-12">
     <div class="row">
-      <div class="col-2">
+      <div class="col-md-2">
       </div>
-      <div class="col-9 col-md-8 new-post-container">
+      <div class="col-12 col-md-8 new-post-container">
         <form method="POST" action="/posts">
           <div>
             <p class="post-prompt">Post a new track:</p>
@@ -23,7 +23,7 @@
             <label for="caption"></label>
             <input class="new-post-info" type="text" name="caption" id="caption" placeholder="Write a message..." required>
           </div>
-          <div>
+          <div class="phone-margin">
             <label for="videoURL"></label>
             <input class="new-post-info" type="text" name="videoURL" id="videoURL" placeholder="Paste YouTube link here..." required><button class="btn btn-primary post-song">Post</button>
           </div>
@@ -36,7 +36,7 @@
       <% posts = posts.reverse(); %>
       <% posts.forEach(post => { %>
         <% const videoID = youtubeParser(post.videoURL); %>
-        <div class="col-2 poster-info" id="<%= post.id %>">
+        <div class="col-3 col-md-2 poster-info" id="<%= post.id %>">
           <% if (post.createdBy) { %>
             <% if (post.createdBy.imageURL) { %>
               <img class="profile-pic" src="<%= post.createdBy.imageURL %>" alt="profile-image">
@@ -56,13 +56,13 @@
               <p>
                 <% const track = user.userPlaylist.find(song => song._id == post.id); %>
                 <% if (track) { %>
-                  <a class="remove-color" href="/playlist/<%= post.id %>/remove">- Remove from Playlist</a>
+                  <a class="remove-color phone-font" href="/playlist/<%= post.id %>/remove">- Remove from Playlist</a>
                 <% } else { %>
-                  <a class="add-color" href="/playlist/<%= post.id %>/add">+ Add to Playlist</a>
+                  <a class="add-color phone-font" href="/playlist/<%= post.id %>/add">+ Add to Playlist</a>
                 <% } %>
                 <% if (post.belongsTo(user)) { %>
                   <span class="float-right">
-                <a href="/posts/<%= post.id %>/edit">Edit/Delete</a>
+                <a class="phone-font" href="/posts/<%= post.id %>/edit">Edit/Delete</a>
                 </span>
                 <% } %>
               </p>

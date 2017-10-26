@@ -15,17 +15,18 @@ $bg-blue: #0b244c;
   padding-left: 7px;
   margin-bottom: 0;
   margin-top: -4px;
+  font-weight: 600;
 }
 
 .new-post-info {
   width: 80%;
   margin: 2px;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .post-song {
   float: right;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 1;
   margin-right: 7px;
   margin-left: 6px;
@@ -58,7 +59,7 @@ $bg-blue: #0b244c;
 }
 
 .wall-post-vid {
-  height: 260px;
+  height: 400px;
   width: 100%;
 }
 
@@ -92,7 +93,7 @@ $bg-blue: #0b244c;
 .comment-box {
   margin-bottom: 12px;
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .post-comment {
@@ -108,24 +109,11 @@ $bg-blue: #0b244c;
   border: none;
   margin: 0;
   padding: 0;
-  font-size: 12px;
+  font-size: 18px;
   color: #007bff;
 }
 
 .delete-comment-btn:hover {
   color: #0056b3;
   text-decoration: underline;
-}
-
-@media only screen and (max-width: 768px) {
-  .wall-post-vid {height: 220px;}
-  .post-song {float: none;}
-  .new-post-info {width: 95%;}
-  .comment-box {width: 100%;}
-  .post-comment {margin: 0 auto 12px auto;}
-}
-
-@media only screen and (max-width: 576px) {
-  .profile-info {display: none;}
-  .wall-post-vid {height: 130px;}
 }

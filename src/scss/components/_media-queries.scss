@@ -1,0 +1,30 @@
+@media only screen and (max-width: 992px) {
+  .wall-post-vid {height: 280px;}
+}
+
+@media only screen and (max-width: 768px) {
+  .wall-post-vid {height: 220px;}
+  .post-song {float: none;}
+  .new-post-info {width: 95%;}
+  .comment-box {width: 100%;}
+  .post-comment {margin: -10px auto 12px auto;}
+  h4, p, .delete-comment-btn, .post-song, .new-post-info, .comment-box {font-size: 12px;}
+  h1 {font-size: 2rem;}
+  .phone-margin {margin-top: -10px;}
+}
+
+@media only screen and (max-width: 576px) {
+  .wall-post-vid {height: 130px;}
+  .phone-font {font-size: 9px;}
+  .post-song {margin-top: 4px;}
+  .comment-box {margin-bottom: 0;}
+  .action-container {margin: -4px 0 -10px 0;}
+  .huge {font-size: 4rem;}
+  .home-container, .about-container {padding-top: 50px;}
+  .about-pic, .background-pic {height: 700px;}
+  .gen-form {
+    input {
+      width: 90%;
+    }
+  }
+}

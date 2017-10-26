@@ -2,8 +2,12 @@ $bg-blue: #0b244c;
 
 .background-pic {
   width: 100%;
-  height: 600px;
+  height: 1000px;
   background: url('../images/vinyl.jpg') center /cover;
+}
+
+.huge {
+  font-size: 5rem;
 }
 
 .home-container {
