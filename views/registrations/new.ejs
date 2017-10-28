@@ -5,26 +5,27 @@
   <% } %>
   <form class="gen-form" method="POST" action="/register">
     <div>
-      <label for="username">Username</label><br>
+      <label for="username">Username *</label><br>
       <input type="text" name="username" id="username" required>
     </div>
     <div>
-      <label for="email">Email</label><br>
+      <label for="email">Email *</label><br>
       <input type="text" name="email" id="email" required>
     </div>
     <div>
-      <label for="imageURL">Profile Picture (URL) <small class="form-text text-muted">Optional</small></label><br>
+      <label for="imageURL">Profile Picture (URL)</label><br>
       <input type="text" name="imageURL" id="imageURL">
     </div>
     <div>
-      <label for="password">Password</label><br>
+      <label for="password">Password *</label><br>
       <input type="password" name="password" id="password" required>
     </div>
     <div>
-      <label for="passwordConfirmation">Password Confirmation</label><br>
+      <label for="passwordConfirmation">Password Confirmation *</label><br>
       <input type="password" name="passwordConfirmation" id="passwordConfirmation" required>
     </div>
     <br>
-    <button class="btn btn-primary">Create Account</button>
+    <button class="btn btn-primary">Create Account</button><br><br>
+    <small class="form-text text-muted">* Required</small>
   </form>
 </main>
