@@ -8,6 +8,8 @@ TRAX is a full-stack, RESTful Express app built using Node.js, MongoDB, JavaScri
 
 ##### [Visit website](https://trax-share.herokuapp.com/).
 
+*Please be aware that Heroku apps go to sleep after 30 mins of inactivity and may take a little time to load*
+
 ---
 <p align="center"><img src="https://i.imgur.com/Upa8d4d.png" width="700"></p>
 

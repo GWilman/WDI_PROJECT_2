@@ -15,12 +15,6 @@ const app = express();
 
 const { port, dbURI, secret } = require('./config/environment');
 
-// Stop app from sleeping on Heroku
-const http = require('http');
-setInterval(function() {
-  http.get('http://trax-share.herokuapp.com');
-}, 900000);
-
 app.use(morgan('dev'));
 
 app.use(expressLayouts);
